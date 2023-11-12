@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-6">
+    <div class="card" style="border: 1px solid">
+      <div class="card-header" style="border-bottom: 1px solid">
+        Lịch sử chấm công tháng: {{dateCurrent | date: 'MM'}}
+      </div>
+      <div class="card-body">
+        <!--                <nz-calendar [(ngModel)]="date" [(nzMode)]="mode" (nzPanelChange)="panelChange($event)"></nz-calendar>-->
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card" style="border: 1px solid">
+      <div class="card-header" style="border-bottom: 1px solid">
+        Lịch sử chấm công hôm nay: {{dateCurrent | date: 'dd/MM/yyyy'}}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-9">
+            <div class="card">
+              <div class="card-header"
+                   [ngClass]="timekeepingHistoryResponse?.isCheckin ? 'text-bg-success' : 'text-bg-danger'">
+                Chấm công vào
+              </div>
+              <div class="card-body">
+                Thời gian: {{timekeepingHistoryResponse?.checkinTime}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"
+                   [ngClass]="timekeepingHistoryResponse?.isCheckout ? 'text-bg-success' : 'text-bg-danger'">
+                Chấm công ra
+              </div>
+              <div class="card-body">
+                Thời gian: {{timekeepingHistoryResponse?.checkoutTime}}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <div class="card-header"
+                   [ngClass]="timekeepingHistoryResponse?.isCheckout && timekeepingHistoryResponse?.isCheckin ? 'text-bg-success' : 'text-bg-danger'">
+                Thời gian làm
+              </div>
+              <div class="card-body">
+                {{workingTime}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <a routerLink="/histories" class="btn btn-outline-primary">Xem tất cả</a>
+      </div>
+    </div>
+  </div>
+</div>

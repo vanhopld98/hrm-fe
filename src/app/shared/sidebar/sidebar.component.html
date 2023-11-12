@@ -1,0 +1,79 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+  <!-- Brand Logo -->
+  <div class="brand-link">
+    <span class="brand-text font-weight-light align-items-center">HR Management</span>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="assets/static/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <div class="d-block">{{name}}</div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item" *ngIf="!isAdmin">
+          <div class="nav-link">
+            <p>
+              Quản lý chấm công
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </div>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a routerLink="/timekeeping" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Chấm công</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/histories" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Lịch sử chấm công</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <div class="nav-link">
+            <p>
+              Quản lý người dùng
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </div>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="pages/examples/invoice.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cá nhân</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/users" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Danh sách nhân viên</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/examples/e-commerce.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thêm mới nhân viên</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

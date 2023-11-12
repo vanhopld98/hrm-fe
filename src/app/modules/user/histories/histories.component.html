@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header text-bg-primary">
+    <h1 class="card-title">
+      Lịch sử chấm công
+    </h1>
+  </div>
+  <div class = "card-body">
+        <nz-table #ajaxTable
+                  [nzFrontPagination]="false"
+                  [nzData]="histories"
+                  [nzLoading]="loading"
+                  [nzTotal]="total"
+                  [(nzPageIndex)]="page"
+                  [(nzPageSize)]="size"
+                  (nzPageIndexChange)="getHistoriesTimekeeping(page - 1, size)"
+                  (nzPageSizeChange)="getHistoriesTimekeeping(page - 1, size)"
+        >
+          <thead>
+          <tr>
+            <th scope="col">Ngày</th>
+            <th scope="col">Chấm công vào</th>
+            <th scope="col">Thời gian</th>
+            <th scope="col">Chấm công ra</th>
+            <th scope="col">Thời gian</th>
+            <th scope="col">Thời gian làm việc</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of ajaxTable.data">
+            <td>{{data.workingDay}}</td>
+            <td>{{data.isCheckin ? 'Đã chấm công' : 'Chưa chấm công'}}</td>
+            <td>{{data.checkinTime}}</td>
+            <td>{{data.isCheckout ? 'Đã chấm công' : 'Chưa chấm công'}}</td>
+            <td>{{data.checkoutTime}}</td>
+            <td>{{data.workingTime}}</td>
+          </tr>
+          </tbody>
+        </nz-table>
+  </div>
+</div>

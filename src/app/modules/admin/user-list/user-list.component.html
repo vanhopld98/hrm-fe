@@ -1,0 +1,95 @@
+<div class="container-fluid">
+
+  <!-- Main row -->
+  <div class="row">
+    <!-- Left col -->
+    <div class="col-md">
+      <!-- MAP & BOX PANE -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Danh sách nhân viên</h3>
+        </div>
+        <div class="card-body p-0">
+          <div class="d-md-flex">
+            <div class="p-1 flex-fill" style="overflow: hidden">
+              <!-- Map will be created here -->
+              <!-- /.card-header -->
+              <div class="card-body">
+                <nz-table #ajaxTable
+                          [nzFrontPagination]="false"
+                          [nzData]="listOfData"
+                          [nzLoading]="loading"
+                          [nzTotal]="total"
+                          [(nzPageIndex)]="pageIndex"
+                          [(nzPageSize)]="pageSize"
+                          (nzPageIndexChange)="getUsers(pageSize, pageIndex - 1)"
+                          (nzPageSizeChange)="getUsers(pageSize, pageIndex - 1)"
+                >
+                  <thead>
+                  <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Vai trò</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Hành động</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let data of ajaxTable.data; let i = index;">
+                    <td>{{i + 1}}</td>
+                    <td>{{ data.firstName }} {{ data.lastName }}</td>
+                    <td>{{ data.username }}</td>
+                    <td>{{ data.email }}</td>
+                    <td *ngIf="data.roles.includes('ROLE_ADMIN'); else isUser">
+                        <div class="btn btn-success">
+                          Quản trị viên
+                        </div>
+                    </td>
+                    <ng-template #isUser>
+                      <td>
+                        <div class="btn btn-secondary">
+                          Người dùng
+                        </div>
+                      </td>
+                    </ng-template>
+                    <ng-container *ngIf="data.isActive">
+                      <td>
+                        <div class="btn btn-success">
+                          Đang hoạt động
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container *ngIf="!data.isActive">
+                      <td>
+                        <div class="btn btn-secondary">
+                          Không hoạt động
+                        </div>
+                      </td>
+                    </ng-container>
+                    <td>
+                      <a routerLink="/" style="margin: 10px">
+                        <button class="btn btn-info">
+                          Xem chi tiết
+                        </button>
+                      </a>
+                      <a routerLink="/" style="margin: 10px">
+                        <button class="btn btn-primary">
+                          Chỉnh sửa
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </nz-table>
+              </div>
+            </div>
+          </div><!-- /.d-md-flex -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.col -->
+</div>
