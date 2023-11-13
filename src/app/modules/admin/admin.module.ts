@@ -8,12 +8,14 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { HistoriesAdminComponent } from './histories/histories-admin.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
     AddNewUserComponent,
     EditUserComponent,
+    HistoriesAdminComponent,
   ],
   imports: [
     CommonModule,

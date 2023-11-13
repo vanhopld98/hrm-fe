@@ -45,7 +45,7 @@ export class LayoutComponent implements OnInit {
 
       if (item === 'ROLE_ADMIN') {
         this.isAdmin = true;
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl("/users")
         return;
       } else {
         this.isUser = true;

@@ -72,7 +72,8 @@ export class LoginComponent implements OnInit {
         this.response = response;
         this.saveDataRememberUser(request);
         if (response.roles.includes(this.ROLE_ADMIN)) {
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/users');
+          return;
         } else if (response.roles.includes(this.ROLE_USER)) {
           this.router.navigate(['/home']);
         } else {

@@ -5,7 +5,8 @@ export interface HistoryResponse {
   checkinTime: string,
   workingTime: number,
   workingTimeStr: string
-  workingDay: string
+  workingDay: string,
+  username: string
 }
 
 export interface HistoriesResponse {

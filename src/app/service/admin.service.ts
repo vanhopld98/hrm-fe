@@ -5,8 +5,10 @@ import {catchError, map, throwError} from "rxjs";
 import {UsersResponse} from "../model/usersResponse";
 import {RegisterRequest} from "../model/registerRequest";
 import {UserProfile} from "../model/userProfile";
+import {HistoriesResponse} from "../model/historyResponse";
 
 const USERS = `${environments.domain}` + '/admin/v1/users';
+const HISTORIES = `${environments.domain}` + '/admin/v1/timekeeping/histories';
 const USER_BY_KEYCLOAK_ID = `${environments.domain}` + '/admin/v1/user/';
 const REGISTER = `${environments.domain}` + '/authentication/v1/register';
 
@@ -63,6 +65,23 @@ export class AdminService {
           return res
         })
       )
+  }
+
+  histories(page: number, size: number) {
+    let headers = this.buildHeaders();
+
+    let params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
+
+    return this.http.get<HistoriesResponse>(HISTORIES, {headers, params})
+      .pipe(
+        catchError(ex => {
+          return throwError(ex);
+        }),
+        map(res => {
+          return res;
+        }))
   }
 
   private buildHeaders() {

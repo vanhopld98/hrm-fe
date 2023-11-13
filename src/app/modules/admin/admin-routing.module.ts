@@ -4,6 +4,7 @@ import {UserListComponent} from "./user-list/user-list.component";
 import {AdminGuard} from "src/app/authentication/helper/admin-guard";
 import {AddNewUserComponent} from "./add-new-user/add-new-user.component";
 import {EditUserComponent} from "./edit-user/edit-user.component";
+import {HistoriesAdminComponent} from "./histories/histories-admin.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'user/edit/:id',
     component: EditUserComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'users/histories',
+    component: HistoriesAdminComponent,
     canActivate: [AdminGuard]
   }
 ];
