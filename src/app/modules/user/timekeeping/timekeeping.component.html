@@ -1,0 +1,53 @@
+<div class="">
+  <div class="row-cols-md-auto">
+    <div class="card">
+      <div class="card-header">
+        Chấm công ngày: {{date | date:'dd/MM/yyyy'}}
+      </div>
+      <div class="card-body">
+        <div class="card">
+          <div class = "card-header" [ngClass] = "timekeepingHistoryResponse?.isCheckin ? 'text-bg-success' : 'text-bg-danger'">
+            Chấm công vào
+          </div>
+          <div class="card-body">
+            <div class = "row">
+              <div class="col-9">
+                Thời gian: {{timekeepingHistoryResponse?.checkinTime}}
+              </div>
+              <div class="col-3">
+                <div *ngIf="isCheckin">
+                  <button class="btn btn-outline-secondary" disabled>Đã chấm công</button>
+                </div>
+                <div *ngIf="!isCheckin">
+                  <button class="btn btn-outline-primary" (click)="checkin()">Chấm công</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isCheckin">
+          <div class="card">
+            <div class = "card-header" [ngClass] = "timekeepingHistoryResponse?.isCheckout ? 'text-bg-success' : 'text-bg-danger'">
+              Chấm công ra
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  Thời gian: {{timekeepingHistoryResponse?.checkoutTime}}
+                </div>
+                <div class="col-3">
+                  <div *ngIf="isCheckout">
+                    <button class="btn btn-outline-secondary" disabled>Đã chấm công</button>
+                  </div>
+                  <div *ngIf="!isCheckout">
+                    <button class="btn btn-outline-primary" (click)="checkout()">Chấm công</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {LoginRequest} from "../model/loginRequest";
 import {ExceptionResponse} from "../model/exceptionResponse";
 
 const LOGIN_URL = `${environments.domain}` + '/authentication/v1/login';
+const LOGOUT_URL = `${environments.domain}` + '/authentication/v1/logout';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +32,30 @@ export class AuthenticationService {
           return throwError(ex);
         }),
         map(user => {
-        sessionStorage.setItem('user', JSON.stringify(user));
-        sessionStorage.setItem('token', user.accessToken);
-        console.log(request.username + " đăng nhập thành công!")
-        this.currentUserSubject.next(user);
-        this.dataSubject.next(user);
-        return user;
-      }));
+          sessionStorage.setItem('user', JSON.stringify(user));
+          sessionStorage.setItem('token', user.accessToken);
+          sessionStorage.setItem('username', request.username);
+          this.currentUserSubject.next(user);
+          this.dataSubject.next(user);
+          return user;
+        }));
+  }
+
+  logout() {
+    const usernameStorage = sessionStorage.getItem('username');
+    const request = {
+      username: usernameStorage
+    }
+
+    return this.http.post(LOGOUT_URL, {request})
+      .pipe(
+        catchError(err => {
+          return throwError(err)
+        }),
+        map(res => {
+          return res;
+        })
+      )
   }
 
   nextDataSubject(value: any) {

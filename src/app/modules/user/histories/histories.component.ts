@@ -30,6 +30,19 @@ export class HistoriesComponent implements OnInit {
     this.timekeepingService.histories(page, size).subscribe(response => {
       this.response = response;
       this.histories = response.timekeepingHistories;
+
+      for (let i = 0; i < this.histories.length; i++) {
+        if (!this.histories[i].workingTime) {
+          this.histories[i].workingTimeStr = 0 + ' phút';
+        } else if (this.histories[i].workingTime < 60) {
+          this.histories[i].workingTimeStr = this.histories[i].workingTime + " phút"
+        } else {
+          let hour = Math.floor(this.histories[i].workingTime / 60);
+          let min = this.histories[i].workingTime % 60;
+          this.histories[i].workingTimeStr = hour + " giờ, " + min + " phút";
+        }
+      }
+
       this.total = response.totalRecord;
       this.loading = false;
     }, error => {

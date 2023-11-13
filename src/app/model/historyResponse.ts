@@ -3,7 +3,8 @@ export interface HistoryResponse {
   isCheckout: boolean,
   checkoutTime: string,
   checkinTime: string,
-  workingTime: number
+  workingTime: number,
+  workingTimeStr: string
   workingDay: string
 }
 
