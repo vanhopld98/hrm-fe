@@ -5,7 +5,6 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '
 import {LoginRequest} from "../../model/loginRequest";
 import {AlertService} from "../../service/alert.service";
 import {LoginResponse} from "../../model/loginResponse";
-import {el} from "@fullcalendar/core/internal-common";
 import {HandleExceptionService} from "../../service/handle-exception.service";
 
 @Component({
@@ -113,6 +112,5 @@ export class LoginComponent implements OnInit {
 
   remember(event: any) {
     this.isRemember = event.target.checked;
-    console.log(this.isRemember)
   }
 }

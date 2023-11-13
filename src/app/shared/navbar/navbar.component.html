@@ -6,10 +6,12 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a routerLink="/home" class="nav-link">Trang chủ</a>
+      <a *ngIf="!isAdmin" routerLink="/home" class="nav-link">Trang chủ</a>
+      <a *ngIf="isAdmin" routerLink="/" class="nav-link">Trang chủ</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=100010054276185" class="nav-link">Liên hệ</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=100010054276185"
+         class="nav-link">Liên hệ</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a routerLink="/logout" class="nav-link">Đăng xuất</a>

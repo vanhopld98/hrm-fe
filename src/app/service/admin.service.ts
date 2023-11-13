@@ -3,8 +3,12 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environments} from "../../environments/environments";
 import {catchError, map, throwError} from "rxjs";
 import {UsersResponse} from "../model/usersResponse";
+import {RegisterRequest} from "../model/registerRequest";
+import {UserProfile} from "../model/userProfile";
 
 const USERS = `${environments.domain}` + '/admin/v1/users';
+const USER_BY_KEYCLOAK_ID = `${environments.domain}` + '/admin/v1/user/';
+const REGISTER = `${environments.domain}` + '/authentication/v1/register';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +20,7 @@ export class AdminService {
   }
 
   getUsers(pageSize: number, page: number) {
-    let headers = new HttpHeaders()
-      .set('Authorization', 'Bearer ' + sessionStorage.getItem('token'))
-      .set('Content-Type', 'application/json');
+    let headers = this.buildHeaders();
 
     let params = new HttpParams()
       .set('page', page)
@@ -33,5 +35,39 @@ export class AdminService {
           return response;
         })
       )
+  }
+
+  getUserByKeycloakId(keycloakId: string) {
+    let headers = this.buildHeaders();
+
+    return this.http.get<UserProfile>(USER_BY_KEYCLOAK_ID + keycloakId, {headers})
+      .pipe(
+        catchError(ex => {
+          return throwError(ex);
+        }),
+        map(response => {
+          return response;
+        })
+      )
+  }
+
+  register(request: RegisterRequest) {
+    let headers = this.buildHeaders();
+
+    return this.http.post(REGISTER, request, {headers})
+      .pipe(
+        catchError(err => {
+          return throwError(err);
+        }),
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  private buildHeaders() {
+    return new HttpHeaders()
+      .set('Authorization', 'Bearer ' + sessionStorage.getItem('token'))
+      .set('Content-Type', 'application/json');
   }
 }

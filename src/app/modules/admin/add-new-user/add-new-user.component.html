@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">
+    Thêm mới người dùng
+  </div>
+  <div class="card-body">
+    <form [formGroup]="formRegister" (ngSubmit)="addNewUser()">
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="username">Tên đăng nhập</span>
+            <input type="text" class="form-control" aria-label="username" aria-describedby="username" formControlName="username">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="firstname">Họ</span>
+            <input type="text" class="form-control" aria-label="firstname" aria-describedby="firstname" formControlName="firstName">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lastname">Tên</span>
+            <input type="text" class="form-control" aria-label="lastname" aria-describedby="lastname" formControlName="lastName">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="email">Email</span>
+            <input type="email" class="form-control" aria-label="email" aria-describedby="email" formControlName="email">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="password">Mật khẩu</span>
+            <input type="password" class="form-control" aria-label="password" aria-describedby="password" formControlName="password">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="address">Địa chỉ</span>
+            <input type="text" class="form-control" aria-label="address" aria-describedby="address" formControlName="address">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="phoneNumber">Số điện thoại</span>
+            <input type="text" class="form-control" aria-label="phoneNumber" aria-describedby="phoneNumber" formControlName="phoneNumber">
+          </div>
+        </div>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-success me-md-2" type="submit">Thêm mới</button>
+        <button class="btn btn-danger" type="reset">Xoá thông tin</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -5,11 +5,15 @@ import {AdminRoutingModule} from "./admin-routing.module";
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzIconModule} from "ng-zorro-antd/icon";
-
+import { AddNewUserComponent } from './add-new-user/add-new-user.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
-    UserListComponent
+    UserListComponent,
+    AddNewUserComponent,
+    EditUserComponent,
   ],
   imports: [
     CommonModule,
@@ -17,6 +21,7 @@ import {NzIconModule} from "ng-zorro-antd/icon";
     NzPaginationModule,
     NzTableModule,
     NzIconModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule {
